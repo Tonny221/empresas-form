@@ -4,7 +4,10 @@ import React, { useState } from 'react'
 const ContentPaper = styled(Paper)(({ theme }) => ({
     marginTop: '2rem',
     padding: '1.5rem',
-    marginBottom: '2rem'
+    marginBottom: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: '1.5rem'
 }));
 
 const InfoData = () => {
@@ -12,14 +15,14 @@ const InfoData = () => {
     const [pcd, setPcd] = useState(false)
     const [contract, setContract] = useState(false)
     const [collab, setCollab] = useState(false)
-    const [yes, setYes] = useState(false)
+    const [others, setOthers] = useState(false)
 
-    const handleYes = () => {
-        setYes(!yes)
+    const handleOthers = () => {
+        setOthers(!others)
     }
 
-    const turnYesOff = () => {
-        if (yes === true) setYes(!yes)
+    const turnOthersOff = () => {
+        if (others === true) setOthers(!others)
     }
 
     const handleCollab = () => {
@@ -58,7 +61,7 @@ const InfoData = () => {
         <Container>
             <ContentPaper elevation={24}>
                 <Typography variant='h2' textAlign={'center'} fontSize={{ xs: '2.25rem', sm: '4rem' }}>Dados da empresa</Typography>
-                <Grid container spacing={8} justifyContent='center' mt={{ sm: '0.25rem' }} p={{ xs: 1, sm: 4 }}>
+                <Grid container spacing={8} p={{ xs: 1, sm: 4 }}>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Nome fantasia da empresa:</InputLabel>
                         <TextField variant='standard' fullWidth />
@@ -137,8 +140,20 @@ const InfoData = () => {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Está contratando?</InputLabel>
-                        <FormControlLabel control={<Radio />} value={'sim'} label='Sim' />
-                        <FormControlLabel control={<Radio />} value={'não'} label='Não' />
+                        <RadioGroup>
+                            <FormControlLabel control={<Radio />} value={'sim'} label='Sim' />
+                            <FormControlLabel control={<Radio />} value={'não'} label='Não' />
+                        </RadioGroup>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Perfil de vaga:</InputLabel>
+                        <RadioGroup>
+                            <FormControlLabel control={<Radio />} value={'Financeiro'} label='Financeiro' onChange={turnOthersOff} />
+                            <FormControlLabel control={<Radio />} value={'Contabilidade'} label='Contabilidade' onChange={turnOthersOff} />
+                            <FormControlLabel control={<Radio />} value={'Administrativo'} label='Administrativo' onChange={turnOthersOff} />
+                            <FormControlLabel control={<Radio />} value={'Outros'} label='Outros' onChange={handleOthers} />
+                            {others ? <TextField variant='standard' fullWidth /> : <></>}
+                        </RadioGroup>
                     </Grid>
                 </Grid>
             </ContentPaper>
