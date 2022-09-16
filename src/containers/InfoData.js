@@ -67,10 +67,6 @@ const InfoData = () => {
                         <TextField variant='standard' fullWidth />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <InputLabel>Cidade onde a empresa atua:</InputLabel>
-                        <TextField variant='standard' fullWidth placeholder='Adicionar endereço completo' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
                         <InputLabel>Possui filiais?</InputLabel>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleFilials} />
@@ -79,16 +75,8 @@ const InfoData = () => {
                         </RadioGroup>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <InputLabel>Ramo de atividade:</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Número de funcionários:</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Qual horário de funcionamento da empresa?</InputLabel>
-                        <TextField variant='standard' fullWidth />
+                        <InputLabel>Cidade onde a empresa atua:</InputLabel>
+                        <TextField variant='standard' fullWidth placeholder='Adicionar endereço completo' />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Existem atividades em:</InputLabel>
@@ -99,12 +87,20 @@ const InfoData = () => {
                         </FormGroup>
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                        <InputLabel>Ramo de atividade:</InputLabel>
+                        <TextField variant='standard' fullWidth />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
                         <InputLabel>Contratam pessoas com deficiência?</InputLabel>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handlePcd} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnPcdOff} />
                             {pcd ? <TextField variant='standard' placeholder='quais?' /> : <></>}
                         </RadioGroup>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Número de funcionários:</InputLabel>
+                        <TextField variant='standard' fullWidth />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Qual a maior dificuldade para contratação?</InputLabel>
@@ -116,8 +112,12 @@ const InfoData = () => {
                             <FormControlLabel control={<Radio />} value={'falta de conhecimento em informática'} label='Falta de conhecimento em informática' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'dificuldades para divulgar as vagas'} label='Dificuldades para divulgar as vagas' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'outros'} label='Outros' onChange={handleContract} />
-                            {contract ? <TextField variant='filled' /> : <></>}
+                            {contract ? <TextField variant='standard' /> : <></>}
                         </RadioGroup>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <InputLabel>Qual horário de funcionamento da empresa?</InputLabel>
+                        <TextField variant='standard' fullWidth />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Quais as principais características procuram em um colaborador?</InputLabel>
@@ -130,7 +130,7 @@ const InfoData = () => {
                             <FormControlLabel control={<Radio />} value={'Comunicação'} label='Comunicação' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'Facilidade para trabalhar em equipe'} label='Facilidade para trabalhar em equipe' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'outros'} label='Outros' onChange={handleCollab} />
-                            {collab ? <TextField variant='filled' /> : <></>}
+                            {collab ? <TextField variant='standard' /> : <></>}
                         </RadioGroup>
                     </Grid>
                     <Grid item xs={12} sm={6}>
