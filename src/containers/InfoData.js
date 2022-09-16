@@ -1,5 +1,6 @@
 import { Paper, Typography, styled, Container, InputLabel, TextField, Grid, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox } from '@mui/material'
 import React, { useState } from 'react'
+import SubmitBtn from '../ui/SubmitBtn';
 
 const ContentPaper = styled(Paper)(({ theme }) => ({
     marginTop: '2rem',
@@ -156,6 +157,7 @@ const InfoData = () => {
                         </RadioGroup>
                     </Grid>
                 </Grid>
+                <SubmitBtn />
             </ContentPaper>
         </Container>
     )
