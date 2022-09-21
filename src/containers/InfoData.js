@@ -29,6 +29,15 @@ const InfoData = () => {
     const [contract, setContract] = useState(false)
     const [collab, setCollab] = useState(false)
     const [others, setOthers] = useState(false)
+    const [vacant, setVacant] = useState(false)
+
+    const handleVacant = () => {
+        setVacant(!vacant)
+    }
+
+    const turnVacantOff = () => {
+        if (vacant === true) setVacant(!vacant)
+    }
 
     const handleOthers = () => {
         setOthers(!others)
@@ -78,7 +87,7 @@ const InfoData = () => {
                     <TextField variant='filled' label='Nome fantasia da empresa:' />
                     <TextField variant='filled' label='Cidade onde a empresa atua:' placeholder='Adicionar endereço completo' />
                     <Box>
-                        <Typography>Possui filiais?</Typography>
+                        <Typography variant='h6'>Possui filiais?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleFilials} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnFilialsOff} />
@@ -89,7 +98,7 @@ const InfoData = () => {
                     <TextField variant='filled' label='Número de funcionários:' />
                     <TextField variant='filled' label='Qual horário de funcionamento da empresa' />
                     <Box>
-                        <Typography>Existem atividades em:</Typography>
+                        <Typography variant='h6'>Existem atividades em:</Typography>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox />} value={'Presencial'} label='Presencial' />
                             <FormControlLabel control={<Checkbox />} value={'Híbrido'} label='Híbrido' />
@@ -100,7 +109,7 @@ const InfoData = () => {
                 <Stack rowGap={4}>
                     <Typography variant='h3'>Informações sobre contrato</Typography>
                     <Box>
-                        <Typography>Contratam pessoas com deficiência?</Typography>
+                        <Typography variant='h6'>Contratam pessoas com deficiência?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handlePcd} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnPcdOff} />
@@ -108,7 +117,7 @@ const InfoData = () => {
                         </RadioGroup>
                     </Box>
                     <Box>
-                        <Typography>Qual a maior dificuldade para contratação?</Typography>
+                        <Typography variant='h6'>Qual a maior dificuldade para contratação?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'qualificação dos candidatos'} label='Qualificação dos candidatos' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'experiência profissional'} label='Experiência profissional' onChange={turnContractOff} />
@@ -121,7 +130,7 @@ const InfoData = () => {
                         </RadioGroup>
                     </Box>
                     <Box>
-                        <Typography>Quais as principais características procuram em um colaborador?</Typography>
+                        <Typography variant='h6'>Quais as principais características procuram em um colaborador?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'Iniciativa'} label='Iniciativa' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'Criatividade'} label='Criatividade' onChange={turnCollabOff} />
@@ -135,14 +144,14 @@ const InfoData = () => {
                         </RadioGroup>
                     </Box>
                     <Box>
-                        <Typography>Está contratando?</Typography>
+                        <Typography variant='h6'>Está contratando?</Typography>
                         <RadioGroup>
-                            <FormControlLabel control={<Radio />} value={'sim'} label='Sim' />
-                            <FormControlLabel control={<Radio />} value={'não'} label='Não' />
+                            <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleVacant} />
+                            <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnVacantOff}/>
                         </RadioGroup>
                     </Box>
-                    <Box>
-                        <Typography>Perfil de vaga:</Typography>
+                    {vacant ? <Box>
+                        <Typography variant='h6'>Perfil de vaga:</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'Financeiro'} label='Financeiro' onChange={turnOthersOff} />
                             <FormControlLabel control={<Radio />} value={'Contabilidade'} label='Contabilidade' onChange={turnOthersOff} />
@@ -150,10 +159,10 @@ const InfoData = () => {
                             <FormControlLabel control={<Radio />} value={'Outros'} label='Outros' onChange={handleOthers} />
                             {others ? <TextField variant='filled' /> : <></>}
                         </RadioGroup>
-                    </Box>
+                    </Box> : <></>}
                 </Stack>
                 <Stack rowGap={4}>
-                    <Typography>Para maiores informações, Link do site da empresa:</Typography>
+                    <Typography variant='h3'>Informações para contatos</Typography>
                     <TextField variant='filled' label='email' />
                     <TextField variant='filled' label='telefone' />
                 </Stack>
