@@ -2,8 +2,7 @@ import { Box, Container, styled, Typography } from '@mui/material'
 import React from 'react'
 
 const HeaderBox = styled(Box)(({ theme }) => ({
-    width: '100vw',
-    backgroundColor: '#001f7d',
+    backgroundColor: 'blue',
     color: 'white',
     padding: '1rem'
 }));

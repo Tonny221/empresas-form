@@ -1,15 +1,27 @@
-import { Paper, Typography, styled, Container, InputLabel, TextField, Grid, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox } from '@mui/material'
+import { Paper, styled, Container, Typography, TextField, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, Stack, Box } from '@mui/material'
 import React, { useState } from 'react'
 import SubmitBtn from '../ui/SubmitBtn';
 
 const ContentPaper = styled(Paper)(({ theme }) => ({
-    marginTop: '2rem',
-    padding: '1.5rem',
-    marginBottom: '2rem',
+    padding: '1rem',
+    [theme.breakpoints.up('sm')]: {
+        padding: '6rem'
+    },
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '1.5rem'
+    [theme.breakpoints.down('sm')]: {
+        boxShadow: 'none'
+    },
+    rowGap: '4rem'
 }));
+
+const PaperContainer = styled(Box)(({ theme }) => ({
+    width: '60%',
+    [theme.breakpoints.down('sm')]: {
+        width: '100%'
+    },
+    margin: '4rem auto'
+}))
 
 const InfoData = () => {
     const [filials, setFilials] = useState(false)
@@ -59,52 +71,44 @@ const InfoData = () => {
     }
 
     return (
-        <Container>
+        <PaperContainer>
             <ContentPaper elevation={24}>
-                <Typography variant='h2' textAlign={'center'} fontSize={{ xs: '2.25rem', sm: '4rem' }}>Dados da empresa</Typography>
-                <Grid container spacing={8} p={{ xs: 1, sm: 4 }}>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Nome fantasia da empresa:</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Possui filiais?</InputLabel>
+                <Stack rowGap={4}>
+                    <Typography variant='h3'>Informações sobre a empresa</Typography>
+                    <TextField variant='filled' label='Nome fantasia da empresa:' />
+                    <TextField variant='filled' label='Cidade onde a empresa atua:' placeholder='Adicionar endereço completo' />
+                    <Box>
+                        <Typography>Possui filiais?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleFilials} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnFilialsOff} />
-                            {filials ? <TextField variant='standard' fullWidth placeholder='Adicionar endereço completo' /> : <></>}
+                            {filials ? <TextField variant='filled' label='Adicionar endereço completo' /> : <></>}
                         </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Cidade onde a empresa atua:</InputLabel>
-                        <TextField variant='standard' fullWidth placeholder='Adicionar endereço completo' />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Existem atividades em:</InputLabel>
+                    </Box>
+                    <TextField variant='filled' label='Ramo de atividade:' />
+                    <TextField variant='filled' label='Número de funcionários:' />
+                    <TextField variant='filled' label='Qual horário de funcionamento da empresa' />
+                    <Box>
+                        <Typography>Existem atividades em:</Typography>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox />} value={'Presencial'} label='Presencial' />
                             <FormControlLabel control={<Checkbox />} value={'Híbrido'} label='Híbrido' />
                             <FormControlLabel control={<Checkbox />} value={'Home-office'} label='Home office' />
                         </FormGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Ramo de atividade:</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Contratam pessoas com deficiência?</InputLabel>
+                    </Box>
+                </Stack>
+                <Stack rowGap={4}>
+                    <Typography variant='h3'>Informações sobre contrato</Typography>
+                    <Box>
+                        <Typography>Contratam pessoas com deficiência?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handlePcd} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnPcdOff} />
-                            {pcd ? <TextField variant='standard' placeholder='quais?' /> : <></>}
+                            {pcd ? <TextField variant='filled' placeholder='quais?' /> : <></>}
                         </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Número de funcionários:</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Qual a maior dificuldade para contratação?</InputLabel>
+                    </Box>
+                    <Box>
+                        <Typography>Qual a maior dificuldade para contratação?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'qualificação dos candidatos'} label='Qualificação dos candidatos' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'experiência profissional'} label='Experiência profissional' onChange={turnContractOff} />
@@ -113,15 +117,11 @@ const InfoData = () => {
                             <FormControlLabel control={<Radio />} value={'falta de conhecimento em informática'} label='Falta de conhecimento em informática' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'dificuldades para divulgar as vagas'} label='Dificuldades para divulgar as vagas' onChange={turnContractOff} />
                             <FormControlLabel control={<Radio />} value={'outros'} label='Outros' onChange={handleContract} />
-                            {contract ? <TextField variant='standard' /> : <></>}
+                            {contract ? <TextField variant='filled' /> : <></>}
                         </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Qual horário de funcionamento da empresa?</InputLabel>
-                        <TextField variant='standard' fullWidth />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Quais as principais características procuram em um colaborador?</InputLabel>
+                    </Box>
+                    <Box>
+                        <Typography>Quais as principais características procuram em um colaborador?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'Iniciativa'} label='Iniciativa' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'Criatividade'} label='Criatividade' onChange={turnCollabOff} />
@@ -131,35 +131,35 @@ const InfoData = () => {
                             <FormControlLabel control={<Radio />} value={'Comunicação'} label='Comunicação' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'Facilidade para trabalhar em equipe'} label='Facilidade para trabalhar em equipe' onChange={turnCollabOff} />
                             <FormControlLabel control={<Radio />} value={'outros'} label='Outros' onChange={handleCollab} />
-                            {collab ? <TextField variant='standard' /> : <></>}
+                            {collab ? <TextField variant='filled' /> : <></>}
                         </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Para maiores informações, Link do site da empresa:</InputLabel>
-                        <TextField variant='standard' fullWidth placeholder='email' sx={{ margin: '1rem 0' }} />
-                        <TextField variant='standard' fullWidth placeholder='telefone' sx={{ margin: '1rem 0' }} />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Está contratando?</InputLabel>
+                    </Box>
+                    <Box>
+                        <Typography>Está contratando?</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' />
                         </RadioGroup>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <InputLabel>Perfil de vaga:</InputLabel>
+                    </Box>
+                    <Box>
+                        <Typography>Perfil de vaga:</Typography>
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'Financeiro'} label='Financeiro' onChange={turnOthersOff} />
                             <FormControlLabel control={<Radio />} value={'Contabilidade'} label='Contabilidade' onChange={turnOthersOff} />
                             <FormControlLabel control={<Radio />} value={'Administrativo'} label='Administrativo' onChange={turnOthersOff} />
                             <FormControlLabel control={<Radio />} value={'Outros'} label='Outros' onChange={handleOthers} />
-                            {others ? <TextField variant='standard' fullWidth /> : <></>}
+                            {others ? <TextField variant='filled' /> : <></>}
                         </RadioGroup>
-                    </Grid>
-                </Grid>
+                    </Box>
+                </Stack>
+                <Stack rowGap={4}>
+                    <Typography>Para maiores informações, Link do site da empresa:</Typography>
+                    <TextField variant='filled' label='email' />
+                    <TextField variant='filled' label='telefone' />
+                </Stack>
                 <SubmitBtn />
             </ContentPaper>
-        </Container>
+        </PaperContainer>
     )
 }
 
