@@ -20,6 +20,9 @@ const PaperContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
         width: '100%'
     },
+    [theme.breakpoints.down('md')]: {
+        width: '90%'
+    },
     margin: '4rem auto'
 }))
 
