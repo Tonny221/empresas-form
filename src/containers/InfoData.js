@@ -94,7 +94,7 @@ const InfoData = () => {
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleFilials} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnFilialsOff} />
-                            {filials ? <TextField variant='filled' label='Adicionar endereço completo' /> : <></>}
+                            {filials ? <TextField variant='filled' label='Adicionar endereço completo da filial' /> : <></>}
                         </RadioGroup>
                     </Box>
                     <TextField variant='filled' label='Ramo de atividade:' />
