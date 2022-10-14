@@ -1,5 +1,6 @@
 import { Paper, styled, Container, Typography, TextField, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, Stack, Box } from '@mui/material'
 import React, { useState } from 'react'
+import AdressBlock from '../components/AdressBlock';
 import SubmitBtn from '../ui/SubmitBtn';
 
 const ContentPaper = styled(Paper)(({ theme }) => ({
@@ -94,7 +95,7 @@ const InfoData = () => {
                         <RadioGroup>
                             <FormControlLabel control={<Radio />} value={'sim'} label='Sim' onChange={handleFilials} />
                             <FormControlLabel control={<Radio />} value={'não'} label='Não' onChange={turnFilialsOff} />
-                            {filials ? <TextField variant='filled' label='Adicionar endereço completo da filial' /> : <></>}
+                            {filials ? <AdressBlock /> : <></>}
                         </RadioGroup>
                     </Box>
                     <TextField variant='filled' label='Ramo de atividade:' />
